@@ -31,6 +31,7 @@
                     </span>
                     <el-dropdown-menu slot="dropdown" >
                         <el-dropdown-item command="/user/777">个人中心</el-dropdown-item>
+                        <el-dropdown-item command="info">编辑资料</el-dropdown-item>
                         <el-dropdown-item>我的好友</el-dropdown-item>
                         <el-dropdown-item>我的关注</el-dropdown-item>
                         <el-dropdown-item>粉丝管理</el-dropdown-item>
@@ -66,10 +67,16 @@ export default {
             this.$refs.login.open();
         },
         handleCommand(url){
-            let routeUrl = this.$router.resolve({
-                path: url
-            });
-            window.open(routeUrl.href,'_blank');
+            console.log(url.split('/'));
+            if(url.split('/')[1] == 'user'){
+                let routeUrl = this.$router.resolve({
+                    path: url
+                });
+                window.open(routeUrl.href,'_blank');
+            }else{
+                this.$router.push(url);
+            }
+            
         }
     }
 }

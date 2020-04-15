@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+    <div class="home">
         <!-- <Header></Header> -->
         <div class="center">
             <div class="lbt">
@@ -61,10 +61,15 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <img src="../../assets/img/logo.png" alt="">
-            <span>本样板的所有内容，包括文字、图片,均为原创。对未经许可擅自使用者，本公司保留追究其法律责任的权利。</span><br>
-            <span>copyright by s.t Album</span>
+        <Footer></Footer>
+        <div class="option">
+            <div class="submission" @click="submission()">
+                <i class="el-icon-camera"></i>
+                <span>传照片</span>
+            </div>
+            <div class="top">
+                <i class="el-icon-arrow-up"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -73,11 +78,13 @@
 import Header from '@/common/Header'
 import PopularCard from '@/common/PopularCard'
 import UserCard from '@/common/UserCard'
+import Footer from '@/common/Footer'
 export default {
     components: {
         Header,
         PopularCard,
-        UserCard
+        UserCard,
+        Footer
     },
     data() {
         return {
@@ -107,9 +114,15 @@ export default {
         }
     },
     methods: {
-        LoginRegister(){
+        LoginRegister() {
             this.dialogVisible = true;
         },
+        submission() {
+            let routeUrl = this.$router.resolve({
+                path: '/submission'
+            });
+            window.open(routeUrl.href,'_blank');
+        }
     }
 }
 </script>
@@ -122,26 +135,26 @@ export default {
         // background-color: purple;
         margin: 0 auto;
         margin-top: 60px;
-       .lbt {
-           img {
-               border-radius: 5px;
-               width: 600px;
-               height: 300px;
-               object-fit: cover;
-           }
-           .el-carousel__indicators--outside {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-           }
-           .el-carousel__indicator--horizontal {
-               padding: 5px 5px;
-           }
-           .el-carousel__indicator {
-               background-color: rgba(0,0,0,0.1);
-           }
-       }
-       .recom_hd ul li{
+        .lbt {
+            img {
+                border-radius: 5px;
+                width: 600px;
+                height: 300px;
+                object-fit: cover;
+            }
+            .el-carousel__indicators--outside {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+            }
+            .el-carousel__indicator--horizontal {
+                padding: 5px 5px;
+            }
+            .el-carousel__indicator {
+                background-color: rgba(0,0,0,0.1);
+            }
+        }
+        .recom_hd ul li{
             margin-bottom: 20px;
             width: 228px;
             height: 130px;
@@ -223,8 +236,7 @@ export default {
                 }
                 ul li:nth-child(5n){
                     margin-right: 0;
-                }
-             
+                } 
             }
             .recom_bottom {
                 margin-top: 10px;
@@ -244,32 +256,48 @@ export default {
             }
         }
     }
-    .footer {
-        width: 100%;
-        height: 100px;
-        background-color: #282c31;
-        position: relative;
-        img {
-            position: absolute;
-            left: 40px;
-            top:20px;
+    .option {
+        position: fixed;
+        right: 40px;
+        bottom: 180px;
+        font-size: 30px;
+        color: white;
+        .submission:hover {
+            background-color: rgb(14, 125, 236);
+        }
+        .top:hover {
+            background-color: rgb(167, 164, 164);
+        }
+        .submission {
+            width: 40px;
             height: 40px;
-            vertical-align: middle;
+            background-color: #409EFF;
+            border-radius: 3px;
+            i {
+                font-size: 20px;
+                position: absolute;
+                top: 4px;
+                left: 10px;
+            }
+            span {
+                width: 40px;
+                font-size: 12px;
+                position: absolute;
+                top: 23px; 
+                left: 2px;
+            }
+
         }
-        span {
-            font-weight: 300;
-            font-size: 14px;
-            width: 800px;
-            position: absolute;
-            top: 25px;
-            left: 150px;
-            color: #fff;
-        }
-        span:last-child {
-            position: absolute;
-            top: 60px;
-            left: 150px;
-            color: #fff;
+        .top {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            margin-top: 10px;
+            border-radius: 3px;
+            i {
+                font-size: 30px;
+                margin-left: 5px;
+            }
         }
     }
 }
